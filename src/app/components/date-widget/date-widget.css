@@ -1,0 +1,29 @@
+.widget-container { 
+    display: flex; 
+    flex-direction: column; 
+    color: #1f2937; 
+}
+
+.day-date { 
+    font-size: 14px; 
+    font-weight: 500; 
+    color: #4b5563; 
+}
+
+.time { 
+    display: flex; 
+    align-items: baseline; 
+    gap: 4px; 
+}
+
+.hours-mins { 
+    font-size: 32px; 
+    font-weight: 700; 
+    letter-spacing: -1px; 
+}
+
+.seconds { 
+    font-size: 20px; 
+    font-weight: 500; 
+    color: #9ca3af; 
+}

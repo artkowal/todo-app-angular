@@ -1,0 +1,37 @@
+<div class="todo-card" [class.completed]="todo.completed">
+  <div class="checkbox-container">
+    <input 
+      type="checkbox" 
+      class="custom-checkbox"
+      [checked]="todo.completed" 
+      (change)="onToggle()"
+    >
+  </div>
+
+  <div class="todo-content">
+    <h5 class="todo-title">{{ todo.title }}</h5>
+    <p class="todo-description" *ngIf="todo.description">{{ todo.description }}</p>
+  </div>
+
+  <div class="todo-actions">
+    <div class="meta-info">
+      <span 
+        class="badge" 
+        *ngIf="todo.priority" 
+        [ngClass]="{'badge-high': todo.priority === 'Wysoki'}">
+        {{ todo.priority }}
+      </span>
+      <span class="todo-date">{{ todo.createdAt | date:'dd.MM.yyyy' }}</span>
+    </div>
+    
+    <div style="display: flex; gap: 10px;">
+      <button class="edit-btn" (click)="onEdit()" aria-label="Edytuj zadanie" style="background: none; border: none; cursor: pointer;">
+        <img src="/icons/edit_note.svg" alt="Ikona edycji" width="20" height="20">
+      </button>
+
+      <button class="delete-btn" (click)="onDelete()" aria-label="Usuń zadanie" style="background: none; border: none; cursor: pointer;">
+        <img src="/icons/delete.svg" alt="Ikona usuwania" width="20" height="20">
+      </button>
+    </div>
+  </div>
+</div>
