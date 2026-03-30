@@ -22,7 +22,8 @@
 
         <div class="task-items">
             @for (todo of todoService.filteredTodos(); track todo.id) {
-            <app-todo-item 
+            <app-todo-item
+                @listAnimation
                 [todo]="todo"
                 (toggle)="todoService.toggleTodo($event)"
                 (delete)="todoService.deleteTodo($event)"
