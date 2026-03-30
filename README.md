@@ -1,6 +1,44 @@
-# TodoAppAngular
+# Zaawansowany interfejs użytkownika – To-Do App
+**Realizacja:** Angular (wersja z Standalone Components i Signals)
+>This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
+
+## 🔗 Linki
+- [Design (Figma) Prototyp](https://www.figma.com/proto/350F65pB86AMl4kyUmAwIQ/Adrian_Kowal_ToDoAp?node-id=24-781&p=f&t=FMr1jvgyGFMgrhGn-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=24%3A781)
+
+
+## 🛠 Wymagania techniczne
+
+| Wymóg | Odpowiednik w środowisku Angular |
+| :--- | :--- |
+| **React 18 z hookami (bez klas)** | **Angular 18/19 (Standalone Components).** Zamiast hooków (`useState`) użyto nowoczesnych Sygnałów (Signals). |
+| **TypeScript 5 w trybie strict** | **TypeScript wbudowany.** Projekt Angular posiada domyślnie włączony tryb *strict* w pliku `tsconfig.json`. |
+|**Vite 5 jako bundler** | **Angular CLI (esbuild/Vite).** Angular CLI korzysta teraz z Vite i esbuild pod maską. Nie ma pliku `vite.config.ts`, ponieważ narzędzie zarządza budowaniem wewnętrznie przez `angular.json`. |
+|**Brak bibliotek UI (czysty CSS)**  | **Czysty CSS.** Projekt wygenerowano z flagą `--style=css`.
+
+## 📖 Dziennik Laboratoriów
+
+### Lab 4: Komponenty i zarządzanie stanem
+
+Wymagania zostały zrealizowane zgodnie ze wszystkimi wymogami funkcjonalnymi:
+- operacje CRUD, 
+- filtrowanie: Wszystkie/Aktywne/Ukończone, 
+- licznik zadań
+
+Główne koncepcje dydaktyczne, takie jak zarządzanie stanem, rozwiązywanie problemu *props drilling* czy typowanie, zostały odwzorowane przy użyciu natywnych wzorców architektury Angulara.
+
+| Koncepcja / Wymóg (React) | Implementacja w projekcie (Angular) | Uzasadnienie architektoniczne |
+| :--- | :--- | :--- |
+| **Bundler (Vite 5)** | **Angular CLI (esbuild/Vite)** | Angular wewnętrznie korzysta z tych samych nowoczesnych narzędzi do budowania i serwowania deweloperskiego. |
+| **Hooki funkcyjne (bez klas)** | **Standalone Components (Klasy)** | Nowoczesny Angular wykorzystuje komponenty Standalone (bez modułów ngModule), które pełnią tę samą funkcję co wyizolowane komponenty funkcyjne w React. |
+| **Props (przekazywanie danych)** np. `todo`, `onToggle`| **Dekoratory `@Input()` i `@Output()`** | Zamiast przekazywać funkcje w dół jako *props*, użyto `EventEmitter` do emitowania zdarzeń z komponentu dziecka (`TodoItem`) do rodzica. |
+| **Lokalny stan (`useState`)** | **Właściwości klasy / `signal()`** | Do zarządzania widocznością formularza czy wpisywanym tekstem użyto dwukierunkowego wiązania `[(ngModel)]` oraz prostych sygnałów. |
+| **Złożony stan (`useReducer`)** | **Serwis (`TodoService`) z użyciem `signal()`** | Zamiast akcji (ADD, TOGGLE, DELETE) rozgłaszanych przez *dispatch*, użyto wstrzykiwanego Serwisu, który przechowuje listę zadań w reaktywnym `signal<Todo[]>`. |
+|**Rozwiązanie *props drilling*** (`Context API`) | **Dependency Injection (Wstrzykiwanie zależności)** | Angular natywnie rozwiązuje problem *props drilling* poprzez wstrzykiwanie serwisów (DI) na poziomie głównego injectora (`providedIn: 'root'`). |
+| **Stan wyliczany (`useMemo` / *derived state*)** | **Sygnały wyliczane (`computed()`)** | Zliczanie aktywnych zadań oraz logika filtrowania opiera się na wydajnym `computed()`, które przelicza się tylko przy mutacji stanu bazowego. |
+| **Warunkowe stylowanie** np. `style={{...}}` | **Dyrektywy `[class.active]` oraz `[ngClass]`** | Osiągnięto wymóg wizualnego wyróżnienia aktywnego filtra natywnymi dyrektywami Angulara. |
+---
+
 
 ## Development server
 

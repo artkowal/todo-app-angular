@@ -1,1 +1,46 @@
-<p>todo-list works!</p>
+<div class="board">
+    <div class="content">
+        <header class="board-header">
+            <app-date-widget></app-date-widget>
+            
+            <button class="toggle-form-btn" (click)="openAddModal()">
+                <span class="icon">+</span> Dodaj zadanie
+            </button>
+
+        </header>
+
+        <div class="list-meta">
+            <div class="title-with-counter">
+            <h2>Zadania do wykonania:</h2>
+            <span class="badge" *ngIf="todoService.activeCount() > 0">
+                {{ todoService.activeCount() }}
+            </span>
+            </div>
+            
+            <app-filter-bar></app-filter-bar>
+        </div>
+
+        <div class="task-items">
+            @for (todo of todoService.filteredTodos(); track todo.id) {
+            <app-todo-item 
+                [todo]="todo"
+                (toggle)="todoService.toggleTodo($event)"
+                (delete)="todoService.deleteTodo($event)"
+                (edit)="openEditModal($event)">
+            </app-todo-item>
+            } @empty {
+            <div class="empty-state">
+                Brak aktywnych zadań do wykonania.
+            </div>
+            }
+    </div>
+  </div>
+
+    <app-todo-modal 
+        [isOpen]="isModalOpen()" 
+        [todoToEdit]="todoToEdit()"
+        (close)="closeModal()" 
+        (save)="handleSave($event)">
+    </app-todo-modal>
+
+</div>

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddTodoForm } from './add-todo-form';
+import { DateWidget } from './date-widget';
 
-describe('AddTodoForm', () => {
-  let component: AddTodoForm;
-  let fixture: ComponentFixture<AddTodoForm>;
+describe('DateWidget', () => {
+  let component: DateWidget;
+  let fixture: ComponentFixture<DateWidget>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddTodoForm],
+      imports: [DateWidget],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddTodoForm);
+    fixture = TestBed.createComponent(DateWidget);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

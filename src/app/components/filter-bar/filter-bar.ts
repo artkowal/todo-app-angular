@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TodoService } from '../../services/todo.service';
+import { FilterType } from '../../models/todo';
 
 @Component({
   selector: 'app-filter-bar',
@@ -6,4 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './filter-bar.html',
   styleUrl: './filter-bar.css',
 })
-export class FilterBar {}
+export class FilterBar {
+  todoService = inject(TodoService);
+
+  currentFilter = this.todoService.currentFilter;
+
+  setFilter(filter: FilterType) {
+    this.todoService.setFilter(filter);
+  }
+}
