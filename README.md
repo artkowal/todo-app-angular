@@ -37,6 +37,7 @@ Główne koncepcje dydaktyczne, takie jak zarządzanie stanem, rozwiązywanie pr
 |**Rozwiązanie *props drilling*** (`Context API`) | **Dependency Injection (Wstrzykiwanie zależności)** | Angular natywnie rozwiązuje problem *props drilling* poprzez wstrzykiwanie serwisów (DI) na poziomie głównego injectora (`providedIn: 'root'`). |
 | **Stan wyliczany (`useMemo` / *derived state*)** | **Sygnały wyliczane (`computed()`)** | Zliczanie aktywnych zadań oraz logika filtrowania opiera się na wydajnym `computed()`, które przelicza się tylko przy mutacji stanu bazowego. |
 | **Warunkowe stylowanie** np. `style={{...}}` | **Dyrektywy `[class.active]` oraz `[ngClass]`** | Osiągnięto wymóg wizualnego wyróżnienia aktywnego filtra natywnymi dyrektywami Angulara. |
+| ***Persystencja danych (`useLocalStorage`)** | **Funkcja `effect()` + `localStorage`** | Wykorzystano natywny mechanizm reagowania na zmiany sygnałów w Angularze. Funkcja `effect()` w serwisie nasłuchuje zmian na liście i automatycznie serializuje stan do pamięci przeglądarki. |
 ---
 
 
