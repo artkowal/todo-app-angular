@@ -1,0 +1,25 @@
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <app-stats-card
+        title="Wszystkie zadania"
+        [value]="todoService.totalCount()"
+        icon="format_list_bulleted"
+        color="#1565C0"
+        bgColor="#E3F2FD">
+    </app-stats-card>
+
+    <app-stats-card
+        title="Ukończone zadania"
+        [value]="todoService.completedCount()"
+        icon="check_circle"
+        color="#2E7D32"
+        bgColor="#E8F5E9">
+    </app-stats-card>
+
+    <app-stats-card
+        title="Oczekujące zadania"
+        [value]="todoService.activeCount()"
+        icon="radio_button_unchecked"
+        color="#E65100"
+        bgColor="#FFF3E0">
+    </app-stats-card>
+</div>

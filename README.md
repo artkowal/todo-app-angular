@@ -18,6 +18,37 @@
 
 ## 📖 Dziennik Laboratoriów
 
+## Lab 5: Biblioteki UI (Angular Material vs Tailwind CSS)
+
+| Kryterium | Angular Material (MUI) | Tailwind CSS | Zwycięzca |
+| :--- | :--- | :--- | :--- |
+| **DX – szybkość startu** | Bardzo wysoka (gotowe, złożone komponenty) | Średnia (wymaga budowania komponentów od zera) | **Material** |
+| **DX – czytelność kodu** | Wysoka (czysty HTML z semantycznymi tagami np. `<mat-card>`) | Niska (szablony HTML są bardzo długie od ilości klas) | **Material** |
+| **Bundle size (prod)** | Większy (pobieramy silnik i style komponentów) | Minimalny (kompilator usuwa nieużywane klasy CSS) | **Tailwind** |
+| **Customizacja stylów** | Uciążliwa (wymaga nadpisywania głębokich klas `::ng-deep`) | Pełna swoboda (zmieniamy każdą właściwość w locie) | **Tailwind** |
+| **Wsparcie dla TypeScript** | Znakomite (silnie typowane Inputs/Outputs i walidacja danych) | Brak (Tailwind operuje tylko na stringach w klasach HTML) | **Material** |
+| **Dostępność (a11y) out-of-box**| Doskonała (wbudowane ARIA, obsługa klawiatury) | Brak (wymaga ręcznego dodawania atrybutów ARIA) | **Material** |
+| **Responsive design** | Wymaga użycia dodatkowych modułów lub własnego CSS | Wbudowany, bardzo intuicyjny (prefiksy `md:`, `lg:`) | **Tailwind** |
+| **Theming / design tokens** | Globalny theme narzucający styl całej aplikacji | Globalne zmienne konfigurowane w `tailwind.config.js` | **Remis** |
+| **Krzywa uczenia się** | Średnia (wymaga poznania API frameworka i jego specyficznych tagów) | Średnia (wymaga świetnej znajomości CSS i zapamiętania nazw klas) | **Remis** |
+| **Integracja z Figma / DS** | Ograniczona (gotowe UI Kity, ale oporne na customowe Design Systemy) | Znakomita (idealne mapowanie tokenów z Figmy 1:1 do pliku konfiguracyjnego) | **Tailwind** |
+
+### Kluczowe spostrzeżenia
+
+> Kiedy wybrać Material / Angular Material? 
+
+Kiedy jest nacisk na bardzo szybkie dowiezienie projektu, panelu administracyjnego itd. Jest to idealne rozwiązanie, gdy nie mamy dedykowanego designera, a chcemy mieć pewność, że aplikacja będzie spójna, dostępna (a11y) i łatwa w obsłudze dla użytkownika. 
+
+> Kiedy wybrać Tailwind CSS?
+
+Kiedy budujemy unikalny, customowy interfejs zaprojektowany od zera przez designera np. w Figmie. Daje 100% kontroli nad wyglądem.
+
+> Kiedy łączyć obie biblioteki?
+
+Główny powtarzalny layout gdzie opieramy się na komponentach Material. Skomplikowane/unikalne elementy wewnątrz aplikacji budujemy za pomocą Tailwinda. Zyskujemy szybkość pisania CSS bez wychodzienia z pliku HTML.
+
+---
+
 ### Lab 4: Komponenty i zarządzanie stanem
 
 Wymagania zostały zrealizowane zgodnie ze wszystkimi wymogami funkcjonalnymi:

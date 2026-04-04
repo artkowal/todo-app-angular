@@ -46,6 +46,12 @@ export class TodoService {
     return this.todosSignal().filter(t => !t.completed).length;
   });
 
+  readonly totalCount = computed(() => this.todosSignal().length);
+
+  readonly completedCount = computed(() => {
+    return this.todosSignal().filter(t => t.completed).length;
+  })
+
   addTodo(title: string, description?: string, priority?: 'Niski' | 'Średni' | 'Wysoki', date?: Date) {
     const newTodo: Todo = {
       id: crypto.randomUUID(),

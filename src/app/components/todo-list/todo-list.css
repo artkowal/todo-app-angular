@@ -1,12 +1,7 @@
 .board { 
     background: white; 
     padding: 24px; 
-    min-height: 60vh;
-}
-
-.content {
-    max-width: 800px;
-    margin: 0 auto;
+    min-height: 50vh;
 }
 
 .board-header { 

@@ -1,0 +1,22 @@
+<div class="flex flex-col h-full bg-brand-500 dark:bg-gray-950 transition-colors duration-300">
+    <div class="px-5 py-4">
+        <h2 class="m-0 text-xl font-bold text-white">TodoApp</h2>
+    </div>
+      
+    <mat-nav-list class="pt-2">
+        <a mat-list-item *ngFor="let item of navItems" [href]="item.path" 
+           class="mt-2 text-white/70 hover:bg-white/10 hover:text-white transition-colors [&_.mat-mdc-list-item-icon]:text-inherit">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <div matListItemTitle>{{ item.label }}</div>
+        </a>
+    </mat-nav-list>
+      
+    <div class="flex-1"></div>
+      
+    <div class="flex items-center gap-3 p-5">
+        <div class="w-9 h-9 rounded-full bg-brand-700 dark:bg-gray-800 flex items-center justify-center font-bold text-sm text-white shadow-inner">
+          U
+        </div>
+        <span class="text-white font-medium">Użytkownik</span>
+    </div>
+</div>
