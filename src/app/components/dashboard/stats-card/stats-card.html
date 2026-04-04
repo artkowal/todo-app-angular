@@ -1,0 +1,13 @@
+<div class="bg-surface dark:bg-surface-dark rounded-[12px] shadow-[0_2px_12px_rgba(0,0,0,0.08)] dark:shadow-none border border-transparent dark:border-outline-dark p-6 flex justify-between items-start transition-colors duration-300 h-full">
+      
+    <div class="flex flex-col">
+        <span class="text-[14px] text-[#6b7280] dark:text-gray-400 mb-2">{{ title }}</span>
+        <span class="text-[32px] font-bold text-[#1f2937] dark:text-gray-100 leading-none">{{ value }}</span>
+    </div>
+      
+    <div class="w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0" 
+        [ngStyle]="{'background-color': bgColor, 'color': color}">
+        <mat-icon>{{ icon }}</mat-icon>
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+<div class="bg-surface dark:bg-surface-dark p-6 min-h-[50vh] rounded-[12px] shadow-[0_2px_12px_rgba(0,0,0,0.08)] dark:shadow-none border border-transparent dark:border-outline-dark transition-colors duration-300">
+    <div>
+        <header class="flex justify-between items-center border-b border-outline-light dark:border-outline-dark pb-4 mb-6">
+            <app-date-widget></app-date-widget>
+                
+             <button class="flex items-center gap-2 bg-transparent text-brand-500 border border-brand-200 dark:border-brand-700/50 py-2 px-4 rounded-lg cursor-pointer font-medium transition-all duration-200 hover:bg-brand-50 dark:hover:bg-surface-hover" 
+                    (click)="openAddModal()">
+                <span>+</span> Dodaj zadanie
+            </button>
+        </header>
+
+        <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
+            <div class="flex items-center gap-3">
+                <h2 class="m-0 text-lg font-semibold text-gray-800 dark:text-gray-100">Zadania do wykonania:</h2>
+                
+                <span class="bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 px-2.5 py-0.5 rounded-full text-xs font-semibold" 
+                      *ngIf="todoService.activeCount() > 0">
+                    {{ todoService.activeCount() }}
+                </span>
+            </div>
+                
+            <app-filter-bar></app-filter-bar>
+        </div>
+
+           <div class="flex flex-col gap-3">
+             @for (todo of todoService.filteredTodos(); track todo.id) {
+            <app-todo-item-tailwind
+                @listAnimation
+                [todo]="todo"
+                (toggle)="todoService.toggleTodo($event)"
+                (delete)="todoService.deleteTodo($event)"
+                (edit)="openEditModal($event)">
+            </app-todo-item-tailwind>
+            } @empty {
+            <div class="text-center p-10 text-gray-400 dark:text-gray-500 rounded-xl">
+                Brak aktywnych zadań do wykonania.
+            </div>
+            }
+        </div>
+    </div>
+
+    <app-todo-modal 
+        [isOpen]="isModalOpen()" 
+        [todoToEdit]="todoToEdit()"
+        (close)="closeModal()" 
+        (save)="handleSave($event)">
+    </app-todo-modal>
+</div>

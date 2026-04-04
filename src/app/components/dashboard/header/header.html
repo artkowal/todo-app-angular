@@ -1,0 +1,37 @@
+<mat-toolbar class="bg-surface dark:bg-surface-dark text-gray-800 dark:text-gray-100 border-b border-outline-light dark:border-outline-dark shadow-sm transition-colors duration-300">
+      <span class="text-lg font-semibold">Dashboard</span>
+      
+      <span class="flex-1"></span>
+      
+      <button 
+        mat-icon-button 
+        aria-label="Powiadomienia" 
+        class="text-gray-500 dark:text-gray-400 hover:text-brand-500 transition-colors"
+      >
+        <mat-icon>notifications</mat-icon>
+      </button>
+      <div class="flex items-center gap-2 ml-4">
+        <mat-icon class="transition-colors duration-300" [ngClass]="!isDarkMode() ? 'text-brand-500' : 'text-gray-500'">
+          light_mode
+        </mat-icon>
+        
+        <button 
+          type="button" 
+          role="switch" 
+          [attr.aria-checked]="isDarkMode()" 
+          aria-label="Przełącz motyw"
+          (click)="toggleTheme()"
+          class="relative inline-flex h-8 w-[60px] items-center rounded-full bg-white shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] border border-gray-200 cursor-pointer focus:outline-none transition-colors dark:border-gray-700 dark:bg-gray-800"
+        >
+          <span 
+            class="inline-block h-6 w-6 rounded-full bg-brand-500 shadow-md transform transition-transform duration-300 ease-in-out"
+            [ngClass]="isDarkMode() ? 'translate-x-[32px]' : 'translate-x-1'"
+          ></span>
+        </button>
+        
+        <mat-icon class="transition-colors duration-300" [ngClass]="isDarkMode() ? 'text-brand-500' : 'text-gray-400'">
+          dark_mode
+        </mat-icon>
+      </div>
+
+</mat-toolbar>

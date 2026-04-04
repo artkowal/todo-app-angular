@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { TodoList } from './components/todo-list/todo-list';
+import { Layout } from './components/dashboard/layout/layout';
 
 @Component({
   selector: 'app-root',
-  imports: [TodoList],
+  imports: [Layout],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
