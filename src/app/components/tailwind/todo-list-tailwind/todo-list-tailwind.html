@@ -3,7 +3,7 @@
         <header class="flex justify-between items-center border-b border-outline-light dark:border-outline-dark pb-4 mb-6">
             <app-date-widget></app-date-widget>
                 
-             <button class="flex items-center gap-2 bg-transparent text-brand-500 border border-brand-200 dark:border-brand-700/50 py-2 px-4 rounded-lg cursor-pointer font-medium transition-all duration-200 hover:bg-brand-50 dark:hover:bg-surface-hover" 
+             <button class="flex items-center gap-1 bg-transparent text-brand-500 text-fluid-small border border-brand-200 dark:border-brand-700/50 py-2 px-4 rounded-lg cursor-pointer font-medium transition-all duration-200 hover:bg-brand-50 dark:hover:bg-surface-hover" 
                     (click)="openAddModal()">
                 <span>+</span> Dodaj zadanie
             </button>
@@ -32,7 +32,7 @@
                 (edit)="openEditModal($event)">
             </app-todo-item-tailwind>
             } @empty {
-            <div class="text-center p-10 text-gray-400 dark:text-gray-500 rounded-xl">
+            <div class="text-fluid-small text-center p-10 text-gray-400 dark:text-gray-500 rounded-xl">
                 Brak aktywnych zadań do wykonania.
             </div>
             }

@@ -6,6 +6,12 @@ module.exports = {
     darkMode: 'class',
     theme: {
       extend: {
+        fontSize: {
+          'fluid-h1': 'var(--font-h1)',
+          'fluid-h2': 'var(--font-h2)',
+          'fluid-body': 'var(--font-body)',
+          'fluid-small': 'var(--font-small)',
+        },
         colors: {
           brand: {
             50:  '#E3F2FD',
