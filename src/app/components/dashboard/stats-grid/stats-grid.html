@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[clamp(0.75rem,2vw,1.5rem)] mb-8 flex-1 min-h-0 pb-2">
     <app-stats-card
         title="Wszystkie zadania"
         [value]="todoService.totalCount()"
