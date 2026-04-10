@@ -1,26 +1,27 @@
-<mat-sidenav-container class="h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+<mat-sidenav-container class="h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 print:bg-white print:h-auto print:!block">
       
     <mat-sidenav 
         [mode]="isDesktop() ? 'side' : 'over'" 
         [opened]="isSidebarOpen()" 
         (closed)="isSidebarOpen.set(false)"
-        class="w-60 bg-brand-500 dark:bg-gray-950 text-white border-r-0 dark:border-r dark:border-outline-dark transition-colors duration-300">
+        class="w-60 bg-brand-500 dark:bg-gray-950 text-white border-r-0 dark:border-r dark:border-outline-dark transition-colors duration-300 print:!hidden">
         <app-sidebar></app-sidebar>
     </mat-sidenav>
 
-    <mat-sidenav-content class="flex flex-col">
-        <app-header (menuClick)="toggleSidebar()"></app-header>
+    <mat-sidenav-content class="h-screen flex flex-col print:h-auto print:overflow-visible print:!ml-0 print:!transform-none print:!block print:w-full">
         
-        <div class="p-6">
-            <app-stats-grid></app-stats-grid>
+        <app-header class="print:!hidden" (menuClick)="toggleSidebar()"></app-header>
+        
+        <div class="p-4 sm:p-6 flex flex-col flex-1 min-h-0 print:min-h-auto print:overflow-visible print:p-0">
+            <app-stats-grid class="shrink-0 print:!hidden"></app-stats-grid>
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start print:!block print:w-full">
                 
-                <div class="lg:col-span-2">
+                <div class="lg:col-span-2 print:w-full">
                     <app-todo-list-tailwind></app-todo-list-tailwind>
                 </div>
                 
-                <div class="lg:col-span-1">
+                <div class="lg:col-span-1 print:!hidden">
                     <app-timeline></app-timeline>
                 </div>
                 
