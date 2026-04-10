@@ -18,6 +18,17 @@
 
 ## 📖 Dziennik Laboratoriów
 
+### Lab 6: Responsive Design - implementacja
+
+| Wymóg / Narzędzie z Instrukcji | Realizacja w projekcie (Angular + Tailwind) | Uzasadnienie i efekt |
+| :--- | :--- | :--- |
+| **Podejście Mobile-first** | **Stylowanie domyślne dla mobile + `sm:`, `md:`, `lg:`** | Domyślne klasy (np. `hidden`, `flex-col`) formatują widok pod ekrany <768px. Modyfikatory (np. `sm:flex`, `lg:grid-cols-3`) poszerzają układ na większych urządzeniach. |
+| **Collapsible navigation (hamburger menu)** | **`@Output()`, `EventEmitter` oraz Angular Signals** | Wprowadzono przycisk w komponencie `Header`, który przez event powiadamia `LayoutComponent`. Ten używa sygnału `isSidebarOpen` do ukrywania/wysuwania `mat-sidenav` na urządzeniach mobilnych. |
+| **Fluid typography z `clamp()`** | **Zmienne CSS w `@layer base` zintegrowane w `tailwind.config.js`** | Zdefiniowano klasy takie jak `text-fluid-h1` czy `text-fluid-body`. Dzięki nim tekst skaluje się płynnie bez skoków typowych dla media queries. |
+| **Responsywna siatka z `auto-fit`** | **Arbitrary values w Tailwind (`grid-cols-[...]`)** | W komponencie `StatsGrid` zastosowano właściwość `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))`, co uniezależniło siatkę od sztywnych breakpointów. |
+| **Kluczowe właściwości mediów** | **Klasy `aspect-square`, `aspect-video` i `object-cover`** | Dodano miniatury do zadań, które na telefonie wymuszają proporcje 1:1, a na desktopie 16:9, bez rozciągania samej grafiki. |
+| ***Zadanie dodatkowe** | **Style druku za pomocą modyfikatora `@media print` (Tailwind `print:`)** | Zastosowano specjalne reguły (np. `print:!hidden`, `print:!ml-0`), które wyłączają na wydruku Sidebar, Header, animacje i cienie, formatując tablicę jako czysty dokument A4. |
+
 ## Lab 5: Biblioteki UI (Angular Material vs Tailwind CSS)
 
 | Kryterium | Angular Material (MUI) | Tailwind CSS | Zwycięzca |

@@ -5,7 +5,6 @@
 }
 
 .day-date { 
-    font-size: 14px; 
     font-weight: 500; 
     color: #4b5563; 
 }
@@ -17,13 +16,11 @@
 }
 
 .hours-mins { 
-    font-size: 32px; 
     font-weight: 700; 
     letter-spacing: -1px; 
 }
 
 .seconds { 
-    font-size: 20px; 
     font-weight: 500; 
     color: #9ca3af; 
 }
