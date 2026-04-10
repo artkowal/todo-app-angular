@@ -1,11 +1,15 @@
 <mat-sidenav-container class="h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       
-    <mat-sidenav mode="side" opened class="w-60 bg-brand-500 dark:bg-gray-950 text-white border-r-0 dark:border-r dark:border-outline-dark transition-colors duration-300">
+    <mat-sidenav 
+        [mode]="isDesktop() ? 'side' : 'over'" 
+        [opened]="isSidebarOpen()" 
+        (closed)="isSidebarOpen.set(false)"
+        class="w-60 bg-brand-500 dark:bg-gray-950 text-white border-r-0 dark:border-r dark:border-outline-dark transition-colors duration-300">
         <app-sidebar></app-sidebar>
     </mat-sidenav>
 
     <mat-sidenav-content class="flex flex-col">
-        <app-header></app-header>
+        <app-header (menuClick)="toggleSidebar()"></app-header>
         
         <div class="p-6">
             <app-stats-grid></app-stats-grid>

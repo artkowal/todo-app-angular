@@ -1,4 +1,14 @@
 <mat-toolbar class="bg-surface dark:bg-surface-dark text-gray-800 dark:text-gray-100 border-b border-outline-light dark:border-outline-dark shadow-sm transition-colors duration-300">
+
+      <button 
+        mat-icon-button 
+        (click)="menuClick.emit()"
+        aria-label="Otwórz menu" 
+        class="block lg:hidden mr-2 text-gray-500 dark:text-gray-400 hover:text-brand-500 transition-colors"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      
       <span class="text-lg font-semibold">Dashboard</span>
       
       <span class="flex-1"></span>

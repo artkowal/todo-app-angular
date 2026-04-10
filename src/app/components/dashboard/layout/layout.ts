@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Sidebar } from '../sidebar/sidebar';
@@ -27,4 +27,23 @@ import { Timeline } from '../timeline/timeline';
 })
 export class Layout {
   todoService = inject(TodoService);
+
+  isDesktop = signal(window.innerWidth >= 1024);
+  isSidebarOpen = signal(window.innerWidth >= 1024);
+
+  @HostListener('window:resize')
+  onResize() {
+    const desktop = window.innerWidth >= 1024;
+    this.isDesktop.set(desktop);
+
+    if (desktop) {
+      this.isSidebarOpen.set(true);
+    } else {
+      this.isSidebarOpen.set(false);
+    }
+  }
+
+  toggleSidebar() {
+    this.isSidebarOpen.update(val => !val);
+  }
 }

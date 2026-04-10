@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, EventEmitter, signal, Output } from '@angular/core';
 import { CommonModule } from '@angular/common'
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,6 +21,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 })
 export class Header {
   isDarkMode = signal(false);
+
+  @Output() menuClick = new EventEmitter<void>();
 
   toggleTheme() {
     this.isDarkMode.update(val => !val);
