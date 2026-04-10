@@ -11,6 +11,13 @@
         >
     </div>
 
+    <img 
+      [src]="'https://picsum.photos/seed/' + todo.id + '/400/225'" 
+      alt="Miniaturka zadania"
+      class="w-12 sm:w-24 rounded-lg shadow-sm shrink-0 aspect-square sm:aspect-video object-cover transition-all duration-300"
+      [ngClass]="{'grayscale opacity-50': todo.completed}"
+    >
+
     <div class="flex-grow min-w-0">
         <h5 
           class="m-0 mb-1 text-fluid-body font-semibold text-gray-800 dark:text-gray-100 transition-colors truncate"
@@ -21,10 +28,9 @@
         <p class="m-0 text-fluid-small text-gray-400 dark:text-gray-500 truncate" *ngIf="todo.description">
           {{ todo.description }}
         </p>
-      </div>
+    </div>
 
     <div class="flex items-center gap-3 sm:gap-5 shrink-0">
-        
         <div class="hidden sm:flex flex-col items-end gap-1.5">
           <span 
             *ngIf="todo.priority" 
@@ -39,19 +45,11 @@
         </div>
         
         <div class="flex gap-1 sm:gap-2">
-          <button 
-            (click)="onEdit()" 
-            aria-label="Edytuj zadanie" 
-            class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-surface-hover flex items-center justify-center"
-          >
+          <button (click)="onEdit()" aria-label="Edytuj zadanie" class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-surface-hover flex items-center justify-center">
             <mat-icon class="text-[20px] w-[20px] h-[20px]">edit</mat-icon>
           </button>
 
-          <button 
-            (click)="onDelete()" 
-            aria-label="Usuń zadanie" 
-            class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center justify-center"
-          >
+          <button (click)="onDelete()" aria-label="Usuń zadanie" class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center justify-center">
             <mat-icon class="text-[20px] w-[20px] h-[20px]">delete</mat-icon>
           </button>
         </div>
