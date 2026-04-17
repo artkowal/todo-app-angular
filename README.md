@@ -18,6 +18,20 @@
 
 ## 📖 Dziennik Laboratoriów
 
+### Lab 7: Formularze i walidacja danych (Zod + Angular Reactive Forms)
+
+Wdrożono wieloetapowy formularz rejestracji oparty o zaawansowane mechanizmy walidacji. Ponieważ projekt korzysta z ekosystemu Angulara, narzędzia z React Hook Form (RHF) zostały zastąpione ich odpowiednikami z `ReactiveFormsModule`, przy jednoczesnym zachowaniu pełnej zgodności z biblioteką **Zod** (zgodnie z wymogiem).
+
+| Wymóg / Koncepcja z React Hook Form | Realizacja w Angular + Zod | Uzasadnienie i efekt |
+| :--- | :--- | :--- |
+| **`useForm()` i persystencja danych** | **Nadrzędny `FormGroup` w kontrolerze** | Formularz nie gubi danych przy kliknięciu "Wstecz". Jeden obiekt `registrationForm` przetrzymuje podgrupy (Krok 1, 2, 3), symulując trwały stan z RHF. |
+| **`register` / `Controller`** | **`formControlName` / `formGroup`** | Pola HTML są dyrektywami podpięte bezpośrednio do kontrolerów. |
+| **Integracja z Zod i polskie błędy** | **Własny `zodValidator` (Adapter)** | Stworzono funkcję mapującą błędy Zoda (z `safeParse`) na obiekty błędów Angulara. Wszystkie komunikaty w `z.object()` są zdefiniowane po polsku. |
+| **Funkcja Zod `refine()`** | **Walidacja na poziomie `FormGroup`** | Zastosowano `.refine()` do weryfikacji zgodności hasła i jego potwierdzenia w Kroku 1. Błąd poprawnie wyświetla się pod odpowiednim polem. |
+| **Pola opcjonalne z Regexem** | **`z.string().optional().refine(...)`** | Numer telefonu w Kroku 2 nie blokuje formularza (jest opcjonalny), ale wpisanie choćby jednego znaku wymusza walidację Regexem (dokładnie 9 cyfr). |
+| **`setError` (Obsługa błędów serwera)** | **Metoda `setErrors()` na polu** | Zaimplementowano symulację opóźnienia serwera. Po 1.5 sekundy, w przypadku "błędu 409", aplikacja cofa na Krok 1 i precyzyjnie nakłada błąd na pole `email` wywołując `.setErrors({ serverError: '...' })`. |
+| **WCAG: Dostępność dla czytników** | **`aria-invalid`, `aria-describedby`, `role="alert"`** | Wdrożono standardy dostępności. Pola informują czytnik ekranu o błędach, a przycisk "Submit" otrzymuje `aria-busy="true"` podczas trwania sztucznego asynchronicznego zapytania. |
+
 ### Lab 6: Responsive Design - implementacja
 
 | Wymóg / Narzędzie z Instrukcji | Realizacja w projekcie (Angular + Tailwind) | Uzasadnienie i efekt |
