@@ -13,11 +13,71 @@
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     
     @if (currentStep() === 1) {
-      <div class="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
-        <h2 class="text-xl font-bold dark:text-white">Dane konta</h2>
-        <p class="text-gray-400 text-sm">Zacznijmy od podstawowych informacji.</p>
-        <div class="p-10 border-2 border-dashed border-gray-700 rounded-xl text-center text-gray-500">
-          Miejsce na pola Kroku 1
+      <div class="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300" [formGroup]="accountGroup">
+        
+        <div>
+          <h2 class="text-xl font-bold dark:text-white">Dane konta</h2>
+          <p class="text-gray-400 text-sm mb-6">Zacznijmy od podstawowych informacji.</p>
+        </div>
+
+        <div class="space-y-1">
+          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Adres email</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            [ngClass]="{'border-red-500 focus:ring-red-500': accountGroup.get('email')?.invalid && accountGroup.get('email')?.touched}"
+            [attr.aria-invalid]="accountGroup.get('email')?.invalid && accountGroup.get('email')?.touched ? 'true' : 'false'"
+            aria-describedby="email-error"
+          >
+          @if (accountGroup.get('email')?.invalid && accountGroup.get('email')?.touched) {
+            <p id="email-error" class="text-sm text-red-500 mt-1" role="alert">
+              {{ accountGroup.get('email')?.errors?.['zodError'] }}
+            </p>
+          }
+        </div>
+
+        <div class="space-y-1">
+          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Hasło</label>
+          <input 
+            type="password" 
+            id="password" 
+            formControlName="password"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            [ngClass]="{'border-red-500 focus:ring-red-500': accountGroup.get('password')?.invalid && accountGroup.get('password')?.touched}"
+            [attr.aria-invalid]="accountGroup.get('password')?.invalid && accountGroup.get('password')?.touched ? 'true' : 'false'"
+            aria-describedby="password-error"
+          >
+          @if (accountGroup.get('password')?.invalid && accountGroup.get('password')?.touched) {
+            <p id="password-error" class="text-sm text-red-500 mt-1" role="alert">
+              {{ accountGroup.get('password')?.errors?.['zodError'] }}
+            </p>
+          }
+        </div>
+
+        <div class="space-y-1">
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Potwierdź hasło</label>
+          <input 
+            type="password" 
+            id="confirmPassword" 
+            formControlName="confirmPassword"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            [ngClass]="{'border-red-500 focus:ring-red-500': (accountGroup.get('confirmPassword')?.invalid || accountGroup.errors?.['zodError']) && accountGroup.get('confirmPassword')?.touched}"
+            [attr.aria-invalid]="(accountGroup.get('confirmPassword')?.invalid || accountGroup.errors?.['zodError']) && accountGroup.get('confirmPassword')?.touched ? 'true' : 'false'"
+            aria-describedby="confirm-password-error"
+          >
+          
+          @if (accountGroup.get('confirmPassword')?.invalid && accountGroup.get('confirmPassword')?.touched) {
+            <p id="confirm-password-error" class="text-sm text-red-500 mt-1" role="alert">
+              {{ accountGroup.get('confirmPassword')?.errors?.['zodError'] }}
+            </p>
+          }
+          @if (accountGroup.errors?.['zodError'] && accountGroup.get('confirmPassword')?.touched && !accountGroup.get('confirmPassword')?.invalid) {
+            <p id="confirm-password-error-match" class="text-sm text-red-500 mt-1" role="alert">
+              {{ accountGroup.errors?.['zodError'] }}
+            </p>
+          }
         </div>
       </div>
     }

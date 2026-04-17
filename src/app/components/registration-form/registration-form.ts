@@ -40,7 +40,17 @@ export class RegistrationForm {
   get personalGroup() { return this.registrationForm.get('step2') as FormGroup; }
 
   nextStep() {
-    if(this.currentStep() < this.totalSteps) {
+    if (this.currentStep() === 1 && this.accountGroup.invalid) {
+      this.accountGroup.markAllAsTouched();
+      return;
+    }
+
+    if (this.currentStep() === 2 && this.personalGroup.invalid) {
+      this.personalGroup.markAllAsTouched();
+      return;
+    }
+
+    if (this.currentStep() < this.totalSteps) {
       this.currentStep.update(s => s + 1);
     }
   }
