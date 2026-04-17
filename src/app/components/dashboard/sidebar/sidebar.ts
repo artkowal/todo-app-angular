@@ -5,21 +5,26 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 @Component({
   selector: 'app-sidebar',
   imports: [
     CommonModule, 
     MatListModule, 
     MatIconModule, 
-    MatDividerModule
+    MatDividerModule,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
   navItems = [
-    { label: 'Dashboard', icon: 'dashboard', path: '#' },
-    { label: 'Zadania', icon: 'task', path: '#' },
-    { label: 'Ustawienia', icon: 'settings', path: '#' }
+    { label: 'Dashboard', icon: 'dashboard', path: '/' },
+    { label: 'Zadania', icon: 'task', path: '/' },
+    { label: 'Ustawienia', icon: 'settings', path: '/' },
+    { label: 'Zarejestruj się', icon: 'person_add', path: '/register' }
   ];
 }

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { Layout } from './components/dashboard/layout/layout';
-import { RegistrationForm } from './components/registration-form/registration-form';
-import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, Layout, RegistrationForm],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

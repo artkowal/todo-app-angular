@@ -4,8 +4,8 @@
     </div>
       
     <mat-nav-list class="pt-2">
-        <a mat-list-item *ngFor="let item of navItems" [href]="item.path" 
-           class="mt-2 text-white/70 hover:bg-white/10 hover:text-white transition-colors [&_.mat-mdc-list-item-icon]:text-inherit">
+        <a mat-list-item *ngFor="let item of navItems" [routerLink]="item.path" 
+           class="mt-2 text-white/70 hover:bg-white/10 hover:text-white transition-colors cursor-pointer [&_.mat-mdc-list-item-icon]:text-inherit">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             <div matListItemTitle>{{ item.label }}</div>
         </a>
