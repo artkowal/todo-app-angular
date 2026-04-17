@@ -31,9 +31,9 @@
             [attr.aria-invalid]="accountGroup.get('email')?.invalid && accountGroup.get('email')?.touched ? 'true' : 'false'"
             aria-describedby="email-error"
           >
-          @if (accountGroup.get('email')?.invalid && accountGroup.get('email')?.touched) {
+          @if ((accountGroup.get('email')?.invalid || accountGroup.get('email')?.hasError('serverError')) && accountGroup.get('email')?.touched) {
             <p id="email-error" class="text-sm text-red-500 mt-1" role="alert">
-              {{ accountGroup.get('email')?.errors?.['zodError'] }}
+              {{ accountGroup.get('email')?.errors?.['serverError'] || accountGroup.get('email')?.errors?.['zodError'] }}
             </p>
           }
         </div>
@@ -151,11 +151,37 @@
     }
 
     @if (currentStep() === 3) {
-      <div class="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
-        <h2 class="text-xl font-bold dark:text-white">Podsumowanie</h2>
-        <div class="p-10 border-2 border-dashed border-gray-700 rounded-xl text-center text-gray-500">
-          Miejsce na podsumowanie i zgody
+      <div class="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300" [formGroup]="summaryGroup">
+        
+        <div>
+          <h2 class="text-xl font-bold dark:text-white">Podsumowanie</h2>
+          <p class="text-gray-400 text-sm mb-6">Sprawdź poprawność danych przed wysłaniem.</p>
         </div>
+
+        <div class="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-5 rounded-xl text-sm text-gray-700 dark:text-gray-300 space-y-3">
+          <p><strong class="dark:text-white">Email:</strong> {{ accountGroup.get('email')?.value }}</p>
+          <p><strong class="dark:text-white">Imię:</strong> {{ personalGroup.get('firstName')?.value }}</p>
+          <p><strong class="dark:text-white">Nazwisko:</strong> {{ personalGroup.get('lastName')?.value }}</p>
+          @if (personalGroup.get('phone')?.value) {
+            <p><strong class="dark:text-white">Telefon:</strong> {{ personalGroup.get('phone')?.value }}</p>
+          }
+        </div>
+
+        <div class="flex items-start gap-3 mt-4">
+          <input 
+            type="checkbox" 
+            id="terms" 
+            formControlName="terms"
+            class="mt-1 w-4 h-4 text-brand-500 focus:ring-brand-500 border-gray-300 rounded cursor-pointer"
+          >
+          <label for="terms" class="text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+            Akceptuję regulamin serwisu oraz politykę prywatności. <span class="text-red-500">*</span>
+          </label>
+        </div>
+        
+        @if (summaryGroup.get('terms')?.invalid && summaryGroup.get('terms')?.touched) {
+          <p class="text-sm text-red-500" role="alert">Akceptacja regulaminu jest wymagana do rejestracji.</p>
+        }
       </div>
     }
 
@@ -177,9 +203,11 @@
       } @else {
         <button type="submit" 
                 mat-flat-button 
-                color="accent" 
-                [disabled]="registrationForm.invalid">
-          Zarejestruj się
+                color="primary" 
+                class="bg-brand-500"
+                [disabled]="registrationForm.invalid || isSubmitting()"
+                [attr.aria-busy]="isSubmitting() ? 'true' : 'false'">
+          {{ isSubmitting() ? 'Wysyłanie...' : 'Zarejestruj się' }}
         </button>
       }
     </div>

@@ -18,6 +18,8 @@ export class RegistrationForm {
   currentStep = signal(1);
   totalSteps = 3
 
+  isSubmitting = signal(false);
+
   registrationForm: FormGroup = this.fb.group({
     step1: this.fb.group({
       email: ['', [zodValidator(accountSchema.shape.email)]],
@@ -38,6 +40,7 @@ export class RegistrationForm {
 
   get accountGroup() { return this.registrationForm.get('step1') as FormGroup; }
   get personalGroup() { return this.registrationForm.get('step2') as FormGroup; }
+  get summaryGroup() { return this.registrationForm.get('step3') as FormGroup; }
 
   nextStep() {
     if (this.currentStep() === 1 && this.accountGroup.invalid) {
@@ -61,9 +64,32 @@ export class RegistrationForm {
     }
   }
 
-  onSubmit() {
-    if(this.registrationForm.valid) {
-      console.log('final data:', this.registrationForm.value);
+ onSubmit() {
+    if(this.registrationForm.invalid) {
+      this.registrationForm.markAllAsTouched();
+      return;
     }
+
+    this.isSubmitting.set(true);
+    setTimeout(() => {
+      this.isSubmitting.set(false)
+
+      const mockServerError = true;
+
+      if(mockServerError) {
+        this.currentStep.set(1);
+
+        setTimeout(() => {
+          this.accountGroup.get('email')?.setErrors({ 
+            serverError: 'Ten adres e-mail jest już zarejestrowany w systemie.' 
+          });
+          this.accountGroup.get('email')?.markAsTouched();
+        }, 0);
+        
+      } else {
+        alert('Sukces! Konto zostało utworzone.');
+        console.log('Wysłane dane:', this.registrationForm.value);
+      }
+    }, 1500);
   }
 }
