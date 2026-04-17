@@ -83,12 +83,70 @@
     }
 
     @if (currentStep() === 2) {
-      <div class="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
-        <h2 class="text-xl font-bold dark:text-white">Dane osobowe</h2>
-        <p class="text-gray-400 text-sm">Opowiedz nam coś o sobie.</p>
-        <div class="p-10 border-2 border-dashed border-gray-700 rounded-xl text-center text-gray-500">
-          Miejsce na pola Kroku 2
+      <div class="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300" [formGroup]="personalGroup">
+        
+        <div>
+          <h2 class="text-xl font-bold dark:text-white">Dane osobowe</h2>
+          <p class="text-gray-400 text-sm mb-6">Opowiedz nam coś o sobie.</p>
         </div>
+
+        <div class="space-y-1">
+          <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Imię</label>
+          <input 
+            type="text" 
+            id="firstName" 
+            formControlName="firstName"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            [ngClass]="{'border-red-500 focus:ring-red-500': personalGroup.get('firstName')?.invalid && personalGroup.get('firstName')?.touched}"
+            [attr.aria-invalid]="personalGroup.get('firstName')?.invalid && personalGroup.get('firstName')?.touched ? 'true' : 'false'"
+            aria-describedby="firstName-error"
+          >
+          @if (personalGroup.get('firstName')?.invalid && personalGroup.get('firstName')?.touched) {
+            <p id="firstName-error" class="text-sm text-red-500 mt-1" role="alert">
+              {{ personalGroup.get('firstName')?.errors?.['zodError'] }}
+            </p>
+          }
+        </div>
+
+        <div class="space-y-1">
+          <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nazwisko</label>
+          <input 
+            type="text" 
+            id="lastName" 
+            formControlName="lastName"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            [ngClass]="{'border-red-500 focus:ring-red-500': personalGroup.get('lastName')?.invalid && personalGroup.get('lastName')?.touched}"
+            [attr.aria-invalid]="personalGroup.get('lastName')?.invalid && personalGroup.get('lastName')?.touched ? 'true' : 'false'"
+            aria-describedby="lastName-error"
+          >
+          @if (personalGroup.get('lastName')?.invalid && personalGroup.get('lastName')?.touched) {
+            <p id="lastName-error" class="text-sm text-red-500 mt-1" role="alert">
+              {{ personalGroup.get('lastName')?.errors?.['zodError'] }}
+            </p>
+          }
+        </div>
+
+        <div class="space-y-1">
+          <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Telefon <span class="text-gray-400 font-normal">(Opcjonalnie)</span>
+          </label>
+          <input 
+            type="tel" 
+            id="phone" 
+            formControlName="phone"
+            placeholder="np. 123456789"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            [ngClass]="{'border-red-500 focus:ring-red-500': personalGroup.get('phone')?.invalid && personalGroup.get('phone')?.touched}"
+            [attr.aria-invalid]="personalGroup.get('phone')?.invalid && personalGroup.get('phone')?.touched ? 'true' : 'false'"
+            aria-describedby="phone-error"
+          >
+          @if (personalGroup.get('phone')?.invalid && personalGroup.get('phone')?.touched) {
+            <p id="phone-error" class="text-sm text-red-500 mt-1" role="alert">
+              {{ personalGroup.get('phone')?.errors?.['zodError'] }}
+            </p>
+          }
+        </div>
+
       </div>
     }
 
