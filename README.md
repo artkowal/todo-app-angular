@@ -22,6 +22,8 @@
 
 Wdrożono wieloetapowy formularz rejestracji oparty o zaawansowane mechanizmy walidacji. Ponieważ projekt korzysta z ekosystemu Angulara, narzędzia z React Hook Form (RHF) zostały zastąpione ich odpowiednikami z `ReactiveFormsModule`, przy jednoczesnym zachowaniu pełnej zgodności z biblioteką **Zod** (zgodnie z wymogiem).
 
+> 💡 Aby przejść do zaimplementowanego formularza i przetestować mechanizmy walidacji, otwórz lewy panel boczny aplikacji (Sidebar) i kliknij zakładkę **`Zarejestruj się`**.
+
 | Wymóg / Koncepcja z React Hook Form | Realizacja w Angular + Zod | Uzasadnienie i efekt |
 | :--- | :--- | :--- |
 | **`useForm()` i persystencja danych** | **Nadrzędny `FormGroup` w kontrolerze** | Formularz nie gubi danych przy kliknięciu "Wstecz". Jeden obiekt `registrationForm` przetrzymuje podgrupy (Krok 1, 2, 3), symulując trwały stan z RHF. |
