@@ -4,7 +4,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { Sidebar } from '../sidebar/sidebar';
 import { Header } from '../header/header';
 import { StatsGrid } from '../stats-grid/stats-grid';
-import { TodoList } from '../../todo-list/todo-list';
 import { TodoListTailwind } from '../../tailwind/todo-list-tailwind/todo-list-tailwind';
 import { TodoService } from '../../../services/todo.service';
 import { Timeline } from '../timeline/timeline';
@@ -18,7 +17,6 @@ import { Timeline } from '../timeline/timeline';
     Sidebar, 
     Header, 
     StatsGrid,
-    TodoList,
     TodoListTailwind,
     Timeline,
   ],
