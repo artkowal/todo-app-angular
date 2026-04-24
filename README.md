@@ -18,6 +18,22 @@
 
 ## 📖 Dziennik Laboratoriów
 
+### Lab 8: Implementacja dostępności (ARIA i semantyczny HTML)
+
+Zrefaktoryzowano strukturę aplikacji pod kątem dostępności cyfrowej (a11y), spełniając wytyczne standardu WCAG 2.1 na poziomie AA. Skupiono się na poprawnym drzewie dostępności (Accessibility Tree) oraz nawigacji klawiaturowej.
+
+> 💡 **Jak przetestować dostępność?** Użyj klawisza `TAB` zaraz po odświeżeniu strony, aby wywołać *Skip Link*, lub otwórz dowolny modal i sprawdź, czy fokus jest w nim zamknięty (Focus Trap).
+
+| Wymóg / Koncepcja WCAG | Realizacja w Angular + CDK | Uzasadnienie i efekt |
+| :--- | :--- | :--- |
+| **Semantyczny HTML5** | **Landmarki: `<header>`, `<nav>`, `<main>`, `<section>`, `<aside>`** | Zastąpiono generyczne `<div>` elementami informującymi czytnik o strukturze strony. |
+| **Skip navigation link** | **Przycisk "Przejdź do treści"** | Link widoczny przy fokusie, przenosi do `<main>`. Działa programowo (`.focus()`), nie powodując zerwania przepływu nawigacji ani zmian w URL. |
+| **ARIA live region** | **`aria-live="polite"` i `aria-atomic="true"`** | Region dynamicznie ogłasza aktualną liczbę zadań po każdej zmianie stanu (dodanie/usunięcie), nie przerywając pracy użytkownika. |
+| **Opisowe etykiety ARIA** | **`[attr.aria-label]` z danymi z modelu** | Przyciski oparte na ikonach otrzymały opisy (np. *"Usuń zadanie: [Tytuł]"*), co pozwala użytkownikom czytników na pełne zrozumienie kontekstu. |
+| **Focus trap w modalu** | **Dyrektywa `cdkTrapFocus` z `@angular/cdk/a11y`** | Fokus nie wycieka z modala. Klawisz `Escape` zamyka okno, a role `dialog` i `aria-modal` poprawnie definiują warstwę interfejsu. |
+
+---
+
 ### Lab 7: Formularze i walidacja danych (Zod + Angular Reactive Forms)
 
 Wdrożono wieloetapowy formularz rejestracji oparty o zaawansowane mechanizmy walidacji. Ponieważ projekt korzysta z ekosystemu Angulara, narzędzia z React Hook Form (RHF) zostały zastąpione ich odpowiednikami z `ReactiveFormsModule`, przy jednoczesnym zachowaniu pełnej zgodności z biblioteką **Zod** (zgodnie z wymogiem).
@@ -34,6 +50,8 @@ Wdrożono wieloetapowy formularz rejestracji oparty o zaawansowane mechanizmy wa
 | **`setError` (Obsługa błędów serwera)** | **Metoda `setErrors()` na polu** | Zaimplementowano symulację opóźnienia serwera. Po 1.5 sekundy, w przypadku "błędu 409", aplikacja cofa na Krok 1 i precyzyjnie nakłada błąd na pole `email` wywołując `.setErrors({ serverError: '...' })`. |
 | **WCAG: Dostępność dla czytników** | **`aria-invalid`, `aria-describedby`, `role="alert"`** | Wdrożono standardy dostępności. Pola informują czytnik ekranu o błędach, a przycisk "Submit" otrzymuje `aria-busy="true"` podczas trwania sztucznego asynchronicznego zapytania. |
 
+---
+
 ### Lab 6: Responsive Design - implementacja
 
 | Wymóg / Narzędzie z Instrukcji | Realizacja w projekcie (Angular + Tailwind) | Uzasadnienie i efekt |
@@ -43,7 +61,9 @@ Wdrożono wieloetapowy formularz rejestracji oparty o zaawansowane mechanizmy wa
 | **Fluid typography z `clamp()`** | **Zmienne CSS w `@layer base` zintegrowane w `tailwind.config.js`** | Zdefiniowano klasy takie jak `text-fluid-h1` czy `text-fluid-body`. Dzięki nim tekst skaluje się płynnie bez skoków typowych dla media queries. |
 | **Responsywna siatka z `auto-fit`** | **Arbitrary values w Tailwind (`grid-cols-[...]`)** | W komponencie `StatsGrid` zastosowano właściwość `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))`, co uniezależniło siatkę od sztywnych breakpointów. |
 | **Kluczowe właściwości mediów** | **Klasy `aspect-square`, `aspect-video` i `object-cover`** | Dodano miniatury do zadań, które na telefonie wymuszają proporcje 1:1, a na desktopie 16:9, bez rozciągania samej grafiki. |
-| ***Zadanie dodatkowe** | **Style druku za pomocą modyfikatora `@media print` (Tailwind `print:`)** | Zastosowano specjalne reguły (np. `print:!hidden`, `print:!ml-0`), które wyłączają na wydruku Sidebar, Header, animacje i cienie, formatując tablicę jako czysty dokument A4. |
+| ***Zadanie dodatkowe** | **Style druku za pomocą modyfikatora `@media print` (Tailwind `print:`)** | Zastosowano specjalne reguły (np. `print:!hidden`, `print:!ml-0`), które wyłączają na wydruku Sidebar, Header, animacje i cienie, formatując tablicę jako czysty dokument A4. 
+
+---
 
 ## Lab 5: Biblioteki UI (Angular Material vs Tailwind CSS)
 
