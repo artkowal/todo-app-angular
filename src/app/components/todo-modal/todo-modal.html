@@ -1,29 +1,37 @@
 <div class="modal-backdrop" *ngIf="isOpen" (click)="closeModal()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
+  <div 
+    class="modal-content" 
+    (click)="$event.stopPropagation()"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    cdkTrapFocus
+    cdkTrapFocusAutoCapture>
+    
     <header class="modal-header">
-      <h2>{{ isEditMode ? 'Edytuj zadanie' : 'Dodaj nowe zadanie' }}</h2>
-      <button class="close-btn" (click)="closeModal()">✕</button>
+      <h2 id="modal-title">{{ isEditMode ? 'Edytuj zadanie' : 'Dodaj nowe zadanie' }}</h2>
+      <button class="close-btn" aria-label="Zamknij okno modala" (click)="closeModal()">✕</button>
     </header>
 
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label>Tytuł zadania</label>
-        <input type="text" name="title" [(ngModel)]="title" required placeholder="np. Zaprojektować bazę danych">
+        <label for="todo-title">Tytuł zadania</label>
+        <input type="text" id="todo-title" name="title" [(ngModel)]="title" required placeholder="np. Zaprojektować bazę danych">
       </div>
 
       <div class="form-group">
-        <label>Data wykonania</label>
-        <input type="date" name="date" [(ngModel)]="selectedDate" required>
+        <label for="todo-date">Data wykonania</label>
+        <input type="date" id="todo-date" name="date" [(ngModel)]="selectedDate" required>
       </div>
 
       <div class="form-group">
-        <label>Opis (opcjonalnie)</label>
-        <textarea name="desc" [(ngModel)]="description" rows="3" placeholder="Dodatkowe informacje..."></textarea>
+        <label for="todo-desc">Opis (opcjonalnie)</label>
+        <textarea id="todo-desc" name="desc" [(ngModel)]="description" rows="3" placeholder="Dodatkowe informacje..."></textarea>
       </div>
 
       <div class="form-group">
-        <label>Priorytet</label>
-        <select name="priority" [(ngModel)]="priority">
+        <label for="todo-priority">Priorytet</label>
+        <select id="todo-priority" name="priority" [(ngModel)]="priority">
           <option value="Niski">Niski</option>
           <option value="Średni">Średni</option>
           <option value="Wysoki">Wysoki</option>

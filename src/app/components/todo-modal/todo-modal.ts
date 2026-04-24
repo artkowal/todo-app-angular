@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Todo } from '../../models/todo';
+import { A11yModule } from '@angular/cdk/a11y'
 
 @Component({
   selector: 'app-todo-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, A11yModule],
   templateUrl: './todo-modal.html',
   styleUrl: './todo-modal.css',
   providers: [DatePipe]
@@ -72,5 +73,12 @@ export class TodoModal {
     this.description = '';
     this.priority = 'Średni';
     this.selectedDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd') || '';
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey() {
+    if (this.isOpen) {
+      this.close.emit();
+    }
   }
 }
