@@ -44,4 +44,11 @@ export class Layout {
   toggleSidebar() {
     this.isSidebarOpen.update(val => !val);
   }
+
+  skipToMain() {
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.focus();
+    }
+  }
 }
