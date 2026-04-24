@@ -45,11 +45,17 @@
         </div>
         
         <div class="flex gap-1 sm:gap-2">
-          <button (click)="onEdit()" aria-label="Edytuj zadanie" class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-surface-hover flex items-center justify-center">
+          <button 
+            (click)="onEdit()" 
+            [attr.aria-label]="'Edytuj zadanie: ' + todo.title" 
+            class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-surface-hover flex items-center justify-center">
             <mat-icon class="text-[20px] w-[20px] h-[20px]">edit</mat-icon>
           </button>
 
-          <button (click)="onDelete()" aria-label="Usuń zadanie" class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center justify-center">
+          <button 
+            (click)="onDelete()" 
+            [attr.aria-label]="'Usuń zadanie: ' + todo.title" 
+            class="p-2 text-gray-400 bg-transparent border-none rounded-lg cursor-pointer transition-colors hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center justify-center">
             <mat-icon class="text-[20px] w-[20px] h-[20px]">delete</mat-icon>
           </button>
         </div>
