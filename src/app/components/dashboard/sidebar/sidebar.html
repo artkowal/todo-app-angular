@@ -7,7 +7,7 @@
         <a mat-list-item *ngFor="let item of navItems" [routerLink]="item.path" 
            class="mt-2 text-white/70 hover:bg-white/10 hover:text-white transition-colors cursor-pointer [&_.mat-mdc-list-item-icon]:text-inherit">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-            <div matListItemTitle>{{ item.label }}</div>
+            <nav matListItemTitle>{{ item.label }}</nav>
         </a>
     </mat-nav-list>
       

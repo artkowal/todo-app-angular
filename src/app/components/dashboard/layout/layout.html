@@ -1,3 +1,9 @@
+<button 
+   (click)="skipToMain()"
+   class="fixed top-0 left-4 -translate-y-[150%] focus:translate-y-0 z-[9999] bg-brand-500 text-white px-6 py-3 font-bold rounded-b-lg shadow-xl transition-transform duration-300 focus:outline-none focus:ring-4 focus:ring-brand-300">
+    Przejdź do głównej treści
+</button>
+
 <mat-sidenav-container class="h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 print:bg-white print:h-auto print:!block">
       
     <mat-sidenav 
@@ -5,29 +11,34 @@
         [opened]="isSidebarOpen()" 
         (closed)="isSidebarOpen.set(false)"
         class="w-60 bg-brand-500 dark:bg-gray-950 text-white border-r-0 dark:border-r dark:border-outline-dark transition-colors duration-300 print:!hidden">
-        <app-sidebar></app-sidebar>
+        <aside class="h-full">
+            <app-sidebar></app-sidebar>
+        </aside>
     </mat-sidenav>
 
     <mat-sidenav-content class="h-screen flex flex-col print:h-auto print:overflow-visible print:!ml-0 print:!transform-none print:!block print:w-full">
         
         <app-header class="print:!hidden" (menuClick)="toggleSidebar()"></app-header>
         
-        <div class="p-4 sm:p-6 flex flex-col flex-1 min-h-0 print:min-h-auto print:overflow-visible print:p-0">
-            <app-stats-grid class="shrink-0 print:!hidden"></app-stats-grid>
+        <main id="main-content" tabindex="-1" class="p-4 sm:p-6 flex flex-col flex-1 min-h-0 print:min-h-auto print:overflow-visible print:p-0 outline-none">
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start print:!block print:w-full">
+            <section aria-label="Statystyki">
+                <app-stats-grid class="shrink-0 print:!hidden"></app-stats-grid>
+            </section>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start print:!block print:w-full mt-6">
                 
-                <div class="lg:col-span-2 print:w-full">
+                <section aria-label="Główna lista zadań" class="lg:col-span-2 print:w-full">
                     <app-todo-list-tailwind></app-todo-list-tailwind>
-                </div>
+                </section>
                 
-                <div class="lg:col-span-1 print:!hidden">
+                <section aria-label="Historia aktywności" class="lg:col-span-1 print:!hidden">
                     <app-timeline></app-timeline>
-                </div>
+                </section>
                 
             </div>
             
-        </div>
+        </main>
     </mat-sidenav-content>
 
 </mat-sidenav-container>
